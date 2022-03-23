@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class Email {
    final static Logger logger = LoggerFactory.getLogger(Email.class);
@@ -55,15 +56,14 @@ public class Email {
    //generate password
    Function<Integer,String>generatePassword =(length)-> {
       Random random = new Random();
-      String capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      String small_chars = "abcdefghijklmnopqrstuvwxyz";
+      String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       String numbers = "0123456789";
       String symbols = "!@#$%&*?";
-      String values = capital_chars + small_chars + numbers + symbols;
+      String values = chars + chars.toLowerCase() + numbers + symbols;
       StringBuilder password = new StringBuilder();
-      for (int i = 0; i < length; i++) {
-         password.append(values.charAt(random.nextInt(values.length())));
-      }
+      Stream.iterate(0, n -> n + 1)
+              .limit(length)
+              .forEach(x -> password.append(values.charAt(random.nextInt(values.length()))));
       return password.toString();
    };
    //change your password

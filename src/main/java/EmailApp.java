@@ -16,6 +16,13 @@ public class EmailApp {
         Email email = new Email(first_name,last_name);
         int choice=-1;
         do{
+            /*
+             * enter 1-> to show all your details like your emails ,password ,mailbox capacity,alternate email and so on
+             * enter 2-> If you want to change your password
+             * enter 3 -> If you want to change mailbox capacity(either default capacity 500MB will be allocated)
+             * enter 4 -> If you want to set an Alternate email for your mail
+             * enter 5 -> If you want to close application
+             */
             logger.info("\n*********\nEnter your choice\n1.Show Info\n2.Change Password\n3.Change mailbox capacity\n4.set Alternate mail\n5.Exit");
             choice =sc.nextInt();
             switch (choice){
